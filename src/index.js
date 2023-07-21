@@ -2,7 +2,8 @@ const {
   BaseKonnector,
   updateOrCreate,
   log,
-  cozyClient
+  cozyClient,
+  categorize
 } = require('cozy-konnector-libs')
 const doctypes = require('cozy-doctypes/dist')
 const moment = require('moment')
@@ -35,6 +36,7 @@ async function start(fields) {
 
   const bankinApi = new BankinApi(surchargedFiels, accountData)
   const { accounts, allOperations } = await bankinApi.fetchAllOperations()
+  const categorizedTransactions = await categorize(allOperations)
 
   try {
     const { accounts: savedAccounts } = await reconciliator.save(
