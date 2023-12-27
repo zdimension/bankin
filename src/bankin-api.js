@@ -295,7 +295,7 @@ module.exports = class BankinApi {
           : 0
 
       return {
-        date: operation.date,
+        date: new Date(operation.date),
         label: operation.description,
         originalBankLabel: operation.raw_description,
         type: 'none',
