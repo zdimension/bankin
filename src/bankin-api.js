@@ -13,7 +13,9 @@ const request = requestFactory({
   // default in cozy-konnector-libs
   json: true,
   // this allows request-promise to keep cookies between requests
-  jar: true
+  jar: true,
+  // Bankin API rejects (403) requests without user agent, 'true' will send a random realistic one
+  userAgent: true
 })
 
 module.exports = class BankinApi {
