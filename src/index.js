@@ -36,10 +36,10 @@ async function start(fields) {
   const bankinApi = new BankinApi(surchargedFiels, accountData)
   const { accounts, allOperations } = await bankinApi.fetchAllOperations()
   const now = moment()
-  const todayAsString = now.format('YYYY-MM-DD')
+  const todayAsString = now.add(1, 'days').format('YYYY-MM-DD')
   const oneMonthAgo = now.subtract(1, 'months').format('YYYY-MM-DD') // so we don't fetch the entire history...
   const categorizedTransactions = await categorize(
-    allOperations.filter(o => !o.is_future && o.date <= todayAsString && o.date >= oneMonthAgo)
+    allOperations.filter(o => !o.is_future && o.date < todayAsString && o.date >= oneMonthAgo)
   )
 
   try {
