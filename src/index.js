@@ -2,7 +2,8 @@ const {
   BaseKonnector,
   updateOrCreate,
   log,
-  cozyClient
+  cozyClient,
+  categorize
 } = require('cozy-konnector-libs')
 const doctypes = require('cozy-doctypes/dist')
 const moment = require('moment')
